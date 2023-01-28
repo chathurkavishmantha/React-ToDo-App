@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckIcon } from "@heroicons/react/24/solid";
 
 const TaskEditForm = ({editedTask, updateTask, closeEditMode }) => {
@@ -20,10 +20,10 @@ const TaskEditForm = ({editedTask, updateTask, closeEditMode }) => {
         window.removeEventListener('keydown', closeModalIfEscaped)
       }
     }, [closeEditMode])
-    
+
     return (
-      <div role="dialog" aria-labelledby="editTask">
-        <form className="todo" onSubmit={handleFormSubmit}>
+      <div role="dialog" aria-labelledby="editTask" onClick={(e) => {e.target === e.currentTarget && closeEditMode()}}>
+        <form className="todo" onSubmit={handleFormSubmit} >
         <div className="wrapper">
           <input
             type="text"
